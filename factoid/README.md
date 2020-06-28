@@ -1,75 +1,68 @@
-# yesno
+# factoid
 
 ## Requirements
 ```bash
-conda create -n bioasq_yesno python=3.7
-conda activate biopasq_yesno
-conda install numpy tqdm
-conda install pytorch cudatoolkit=10.1 -c pytorch
-pip install transformers==2.11.0
+conda create -n bioasq_factoid python=3.7
+conda activate biopasq_factoid
+pip install tensorflow-gpu==1.14.0
+pip install tqdm
 ```
 
-## Train
+## Fine-tuning
+Please use `run_factoid.py` for factoid type questions. Use `BioASQ-*.json` for training and predicting dataset.
+Our pre-processed version of the BioASQ Task 8b-Phase B dataset is available at **[`Pubmed Abstract`]()** and **[`Factoid type`]()**.
+Follow the below processes to train and predict for our model.
 
-The training will finish in about 3 minutes
+### Training and Predicting
+If you want to predict then set the `--do_predict` argument as True else False.
 
 ```bash
-export BIOBERT_DIR=$HOME/BioASQ/pt_biobert1.1_mnli
-export BIOASQ_DIR=$HOME/BioASQ/data-release
-python run_yesno.py \
-    --model_name_or_path $BIOBERT_DIR \
-    --do_train \
-    --overwrite_cache \
-    --train_file $BIOASQ_DIR/BioASQ-7b/train/Snippet-as-is/BioASQ-train-yesno-7b-snippet.json \
-    --train_batch_size 24 \
-    --learning_rate 8e-6 \
-    --num_train_epochs 3.0 \
-    --max_seq_length 384 \
-    --doc_stride 128 \
-    --logging_steps 10 \
-    --seed 0 \
-    --output_dir /tmp/yesno_output
+export BIOBERT_DIR=Directory of the Pre-trained Language Model
+export DATA_DIR=Directory of the pre-processed version of BioASQ dataset
+export batch=A number of testset batch (e.g., 1~5)
+
+python run_factoid.py \
+    --do_train=True \
+    --do_predict=True \
+    --vocab_file=$(BIOBERT_DIR)/vocab.txt \
+    --bert_config_file=$(BIOBERT_DIR)/config.json \
+    --init_checkpoint=$(BIOBERT_DIR)/model.ckpt \
+    --max_seq_length=384 \
+    --train_batch_size=24 \
+    --learning_rate=5e-6 \
+    --batch=$(batch) \
+    --doc_stride=128 \
+    --num_train_epochs=3.0 \
+    --do_lower_case=False \
+    --train_file=$(DATA_DIR)/train_v2/Snippet-as-is/BioASQ-train-factoid-8b-snippet-annotated.json \
+    --predict_file=$(DATA_DIR)/test/Snippet-as-is/BioASQ-test-factoid-8b-$(batch)-snippet.json \
+    --output_dir=Directory of output file \
 ```
 
-## Evaluate
-
-### Prediction in SQuAD format
-
-The prediction output is saved in "predictions_.json" This needs to be tranformed in BIOASQ format for the official evaluation module.
+### Evaluation
+We already have the evaluation code built-in. However, this part suggests only for the evaluation part.
+The predictions will be saved into a file called `predictions.json` and `nbest_predictions.json` in the `output_dir`.
+Run transform file (e.g., `transform_n2b_factoid.py`) in `./biocodes/` folder to convert `nbest_predictions.json` or `predictions.json` to BioASQ JSON format, which will be used for the official evaluation.
 
 ```bash
-export MODEL_DIR=/tmp/yesno_output
-export BIOASQ_DIR=$HOME/BioASQ/data-release
-python run_yesno.py \
-    --model_name_or_path $MODEL_DIR \
-    --overwrite_cache \
-    --do_predict \
-    --predict_file $BIOASQ_DIR/BioASQ-7b/test/Snippet-as-is/BioASQ-test-yesno-7b-1-snippet.json \
-    --max_seq_length 384 \
-    --doc_stride 128 \
-    --output_dir /tmp/yesno_output
+python ./biocodes/transform_n2b_factoid.py \
+    --nbest_path={OUTPUT_DIR}/nbest_predictions.json \
+    --output_path={OUTPUT_DIR}
 ```
 
-### Evaluation in BioASQ format
+This will generate `BioASQform_BioASQ-answer.json` in {OUTPUT_DIR}.
+Clone [Evaluation](https://github.com/BioASQ/Evaluation-Measures) code from BioASQ github and run evaluation code on `Evaluation-Measures` directory.
+Please note that you should put 5 as parameter for -e if you are evaluating the system for BioASQ 5b/6b/7b/8b dataset.
 
 ```bash
-export OUTPUT_DIR=/tmp/yesno_output
-export Evaluation_Measures_DIR=$HOME/Evaluation-Measures/
-export BIOASQ_DIR=$HOME/BioASQ/data-release
-python ./transform_n2b_yesno.py \
-    --nbest_path=$OUTPUT_DIR/predictions_.json \
-    --output_path=$OUTPUT_DIR
-java -Xmx10G \
-    -cp $CLASSPATH:$Evaluation_Measures_DIR/flat/BioASQEvaluation/dist/BioASQEvaluation.jar \
-    evaluation.EvaluatorTask1b \
-    -phaseB \
-    -e 5     \
-    $BIOASQ_DIR/BioASQ-7b/test/Golden/7B1_golden.json     \
-    $OUTPUT_DIR/BioASQform_BioASQ-answer.json
+cd Evaluation-Measures
+java -Xmx10G -cp $CLASSPATH:./flat/BioASQEvaluation/dist/BioASQEvaluation.jar evaluation.EvaluatorTask1b -phaseB -e 5 \
+    $(DATA_DIR)/test/7B1_golden.json \
+    $(OUTPUT_DIR)/BioASQform_BioASQ-answer.json | cut -d' ' -f2,3,4 | sed -e 's/ /\t/g'
 ```
 
-### Result
-
+This will give you the below scores.
+The evaluation scores are sequentially recurs to SAcc, LAcc, MRR.
 ```bash
-0.896551724137931 0.0 0.0 0.0 0.0 0.0 0.0 0.8317214700193424 0.9361702127659575 0.7272727272727273
+0.00 0.00 0.00
 ```

@@ -11,13 +11,20 @@ We provide a pre-processed version of the [BioASQ](http://participants-area.bioa
 * **[`Factoid type`]()** : a pre-processed version of Factoid type questions in Task 8b-Phase B.
 * **[`List type`]()** : a pre-processed version of List type questions in Task 8b-Phase B.
 
-We revised the pre-processed datasets from [BioASQ-BioBERT](https://github.com/dmis-lab/bioasq-biobert) **Pre-trained Language Model for Biomedical Question Answering**.
+We revised the pre-processed datasets from **Pre-trained Language Model for Biomedical Question Answering** released by [BioASQ-BioBERT](https://github.com/dmis-lab/bioasq-biobert).
 
 For details of the original BioASQ datasets, please see **An overview of the BIOASQ large-scale biomedical semantic indexing and question answering competition (Tsatsaronis et al. 2015)**.
 
 ## Pre-trained Model
 We use the [BioBERT](https://github.com/dmis-lab/biobert) model as our base model learning.
 For specific fine-tuning procedure, please see our corresponding folder respectively.
+
+## Requirements
+
+* GPU (Our setting was RTX )
+* Python version >= 3.6
+* Tensorflow version >= 1.14.0
+* Pytorch version >= 
 
 ## Contact Information
 For help or any issues using our code, please contact Minbyul Jeong or Mujeen Sung (minbyuljeong, mujeensung {at} korea.ac.kr).
