@@ -5,7 +5,7 @@
 conda create -n bioasq_factoid python=3.7
 conda activate bioasq_factoid
 pip install tensorflow-gpu==1.14.0
-pip install tqdm
+pip install tqdm six 
 ```
 
 ## Fine-tuning
