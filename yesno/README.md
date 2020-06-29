@@ -5,7 +5,7 @@
 conda create -n bioasq_yesno python=3.7
 conda activate biopasq_yesno
 conda install numpy tqdm
-conda install pytorch cudatoolkit=10.1 -c pytorch
+conda install pytorch=1.5.1 cudatoolkit=10.1 -c pytorch
 pip install transformers==2.11.0
 ```
 
