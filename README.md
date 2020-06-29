@@ -21,10 +21,10 @@ For specific fine-tuning procedure, please see our corresponding folder respecti
 
 ## Requirements
 
-* GPU (Our setting was RTX )
-* Python version >= 3.6
+* GPU (Our setting was a single NVIDIA Titan RTX (24GB) GPU)
+* Python version >= 3.6 (for TF) 3.7 (for torch)
 * Tensorflow version >= 1.14.0
-* Pytorch version >= 
+* Pytorch version >= 1.5.1
 
 ## Contact Information
 For help or any issues using our code, please contact Minbyul Jeong or Mujeen Sung (minbyuljeong, mujeensung {at} korea.ac.kr).
