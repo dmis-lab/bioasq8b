@@ -3,7 +3,7 @@
 ## Requirements
 ```bash
 conda create -n bioasq_list python=3.7
-conda activate biopasq_list
+conda activate bioasq_list
 pip install tensorflow-gpu==1.14.0
 pip install tqdm
 ```
