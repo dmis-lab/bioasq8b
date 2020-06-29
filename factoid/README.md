@@ -34,7 +34,7 @@ python run_factoid.py \
     --doc_stride=128 \
     --num_train_epochs=3.0 \
     --do_lower_case=False \
-    --train_file=$(DATA_DIR)/train_v2/Snippet-as-is/BioASQ-train-factoid-8b-snippet-annotated.json \
+    --train_file=$(DATA_DIR)/train/Snippet-as-is/BioASQ-train-factoid-8b-snippet-annotated.json \
     --predict_file=$(DATA_DIR)/test/Snippet-as-is/BioASQ-test-factoid-8b-$(batch)-snippet.json \
     --output_dir=Directory of output file \
 ```
