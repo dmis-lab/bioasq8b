@@ -10,7 +10,7 @@ pip install tqdm
 
 ## Fine-tuning
 Please use `run_factoid.py` for factoid type questions. Use `BioASQ-*.json` for training and predicting dataset.
-Our pre-processed version of the BioASQ Task 8b-Phase B dataset is available at **[`Pubmed Abstract`]()** and **[`Factoid type`]()**.
+Our pre-processed version of the BioASQ Task 8b-Phase B dataset is available at **[`Pubmed Abstract`](https://drive.google.com/drive/folders/1SlgDQUg2hNMBRDgPZlqo_ucRZpDM3TV6)** and **[`Factoid type`](https://drive.google.com/drive/folders/1SlgDQUg2hNMBRDgPZlqo_ucRZpDM3TV6)**.
 Follow the below processes to train and predict for our model.
 
 ### Training and Predicting
