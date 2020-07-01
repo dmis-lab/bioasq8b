@@ -60,7 +60,7 @@ Please note that you should put 5 as parameter for -e if you are evaluating the 
 cd Evaluation-Measures
 java -Xmx10G -cp $CLASSPATH:./flat/BioASQEvaluation/dist/BioASQEvaluation.jar evaluation.EvaluatorTask1b -phaseB -e 5 \
     $(DATA_DIR)/test/7B1_golden.json \
-    $(OUTPUT_DIR)/BioASQform_BioASQ-answer.json | cut -d' ' -f2,3,4 | sed -e 's/ /\t/g'
+    $(OUTPUT_DIR)/BioASQform_BioASQ-answer.json
 ```
 
 This will give you the below scores.
