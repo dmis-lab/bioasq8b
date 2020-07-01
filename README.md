@@ -21,9 +21,9 @@ We use the [BioBERT](https://github.com/dmis-lab/biobert) model as our base mode
 For specific fine-tuning procedure, please see our corresponding folder respectively.
 
 In order to facilitate the reproduction of our results, we provide our learned parameters of our model.
-* **[`BioBERT-MNLI`]()** : Sequential transfer learning of our model (BioBERT-MNLI) parameters. 
-* **[`BioBERT-MNLI-SQuAD`]()** : Sequential transfer learning of our model (BioBERT-MNLI-SQuAD) parameters.
-* **[`BioBERT-MNLI-SQuAD(oracle)`]()** : Sequential transfer learning of our model (BioBERT-MNLI-SQuAD(oracle)) parameters.
+* **[`BioBERT-MNLI`](https://drive.google.com/drive/folders/16vzhUwGc88d3u-KjpiXB2KUik_UzRWuX)** : Sequential transfer learning of our model (BioBERT-MNLI) parameters. 
+* **[`BioBERT-MNLI-SQuAD`](https://drive.google.com/drive/folders/1VKnhpPjGZja3jyYL2tZRP8ngdJnBJC8U)** : Sequential transfer learning of our model (BioBERT-MNLI-SQuAD) parameters.
+* **[`BioBERT-MNLI-SQuAD(oracle)`](https://drive.google.com/drive/folders/1JB90k-FiAhqWlF_KD2jtKc0keWi2RDHh)** : Sequential transfer learning of our model (BioBERT-MNLI-SQuAD(oracle)) parameters.
 
 ## Requirements
 
