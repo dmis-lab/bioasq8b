@@ -34,8 +34,34 @@ python run_factoid.py \
     --doc_stride=128 \
     --num_train_epochs=3.0 \
     --do_lower_case=False \
-    --train_file=$(DATA_DIR)/train/Snippet-as-is/BioASQ-train-factoid-8b-snippet-annotated.json \
-    --predict_file=$(DATA_DIR)/test/Snippet-as-is/BioASQ-test-factoid-8b-$(batch)-snippet.json \
+    --train_file=$(DATA_DIR)/train/Snippet-as-is/BioASQ-train-factoid-7b-snippet-annotated.json \
+    --predict_file=$(DATA_DIR)/test/Snippet-as-is/BioASQ-test-factoid-7b-$(batch)-snippet.json \
+    --output_dir=Directory of output file \
+```
+
+To train with our suggested parameters of **[`BioBERT-MNLI-SQuAD(oracle)`](https://drive.google.com/drive/folders/1JB90k-FiAhqWlF_KD2jtKc0keWi2RDHh)**,
+
+```bash
+export BIOBERT_DIR=Directory of the pre-trained language model
+export DATA_DIR=Directory of the pre-processed version of BioASQ dataset
+export PRETRAINED=Director of the pre-trained parameters of our language model
+export batch=A number of test dataset batch (e.g., 1~5)
+
+python run_factoid.py \
+    --do_train=True \
+    --do_predict=True \
+    --vocab_file=$(BIOBERT_DIR)/vocab.txt \
+    --bert_config_file=$(BIOBERT_DIR)/config.json \
+    --init_checkpoint=$(PRETRAINED)/model.ckpt-6852 \
+    --max_seq_length=384 \
+    --train_batch_size=24 \
+    --learning_rate=5e-6 \
+    --batch=$(batch) \
+    --doc_stride=128 \
+    --num_train_epochs=3.0 \
+    --do_lower_case=False \
+    --train_file=$(DATA_DIR)/train/Snippet-as-is/BioASQ-train-factoid-7b-snippet-annotated.json \
+    --predict_file=$(DATA_DIR)/test/Snippet-as-is/BioASQ-test-factoid-7b-$(batch)-snippet.json \
     --output_dir=Directory of output file \
 ```
 
