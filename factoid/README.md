@@ -29,7 +29,7 @@ python run_factoid.py \
     --init_checkpoint=$(BIOBERT_DIR)/model.ckpt \
     --max_seq_length=384 \
     --train_batch_size=24 \
-    --learning_rate=5e-6 \
+    --learning_rate=9e-6 \
     --batch=$(batch) \
     --doc_stride=128 \
     --num_train_epochs=3.0 \
@@ -40,6 +40,7 @@ python run_factoid.py \
 ```
 
 To train with our suggested parameters of **[`BioBERT-MNLI-SQuAD(oracle)`](https://drive.google.com/drive/folders/1JB90k-FiAhqWlF_KD2jtKc0keWi2RDHh)**,
+then just change the `--init_checkpoint` as pre-trained parameters.
 
 ```bash
 export BIOBERT_DIR=Directory of the pre-trained language model
@@ -55,7 +56,7 @@ python run_factoid.py \
     --init_checkpoint=$(PRETRAINED)/model.ckpt-6852 \
     --max_seq_length=384 \
     --train_batch_size=24 \
-    --learning_rate=5e-6 \
+    --learning_rate=9e-6 \
     --batch=$(batch) \
     --doc_stride=128 \
     --num_train_epochs=3.0 \
@@ -90,5 +91,5 @@ java -Xmx10G -cp $CLASSPATH:./flat/BioASQEvaluation/dist/BioASQEvaluation.jar ev
 This will give you the below scores.
 The evaluation scores are sequentially recurs to SAcc, LAcc, MRR.
 ```bash
-0.00 0.00 0.00
+0.2258	0.5161	0.4154
 ```
