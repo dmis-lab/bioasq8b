@@ -1,7 +1,7 @@
 # Transferability of Natural Language Inference to Biomedical Question Answering
 This repository provides a code for our paper, which tries to interpret the transferability of natural language inference to biomedical question answering.
 We use this code for the [BioASQ](http://bioasq.org/) Challenge Task 8b-Phase B.
-Please refer to our paper [Transferability of Natural Language Inference to Biomedical Question Answering]() for more details.
+Please refer to our paper [Transferability of Natural Language Inference to Biomedical Question Answering](https://arxiv.org/abs/2007.00217) for more details.
 This project is proceeded by [DMIS-Lab](https://dmis.korea.ac.kr).
 
 ## Data Download
