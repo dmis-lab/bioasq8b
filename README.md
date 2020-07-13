@@ -35,3 +35,15 @@ In order to facilitate the reproduction of our results, we provide our learned p
 ## Contact Information
 For help or any issues using our code, please contact Minbyul Jeong or Mujeen Sung (minbyuljeong, mujeensung {at} korea.ac.kr).
 We welcome for any suggestions to modify our issues.
+
+## Bibliography
+```bash
+@misc{jeong2020transferability,
+    title={Transferability of Natural Language Inference to Biomedical Question Answering},
+    author={Minbyul Jeong and Mujeen Sung and Gangwoo Kim and Donghyeon Kim and Wonjin Yoon and Jaehyo Yoo and Jaewoo Kang},
+    year={2020},
+    eprint={2007.00217},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+```
