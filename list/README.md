@@ -66,5 +66,5 @@ java -Xmx10G -cp $CLASSPATH:./flat/BioASQEvaluation/dist/BioASQEvaluation.jar ev
 This will give you the below scores.
 The evaluation scores are sequentially recurs to  YesNo Acc, Factoid Strict Acc, Factoid Lenient Acc, Factoid MRR, **List Prec, List Rec, List F1,** YesNo macroF1, YesNo F1 yes, YesNo F1 no.
 ```bash
-0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0
+0.6043 0.4881 0.4998
 ```
